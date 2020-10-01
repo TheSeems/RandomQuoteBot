@@ -59,7 +59,7 @@ async def send_random_post(event: BaseEvent):
 async def say_hello(event: BaseEvent) -> str:
     raw_users = await event.api_ctx.users.get(user_ids=[event.object.object.message.from_id])
     if raw_users is not None and len(raw_users.response) != 0:
-        first_name = raw_users[0].first
+        first_name = raw_users.response[0].first_name
     else:
         # I actually don't know in which cases this may occur.
         first_name = '?'
