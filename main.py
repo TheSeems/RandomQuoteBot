@@ -58,7 +58,7 @@ async def send_random_post(event: BaseEvent):
 @bot.message_handler(settings.welcome_trigger)
 async def say_hello(event: BaseEvent) -> str:
     raw_users = await event.api_ctx.users.get(user_ids=[event.object.object.message.from_id])
-    if len(raw_users) != 0:
+    if raw_users is not None and len(raw_users.response) != 0:
         first_name = raw_users[0].first
     else:
         # I actually don't know in which cases this may occur.
